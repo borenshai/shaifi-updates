@@ -1,7 +1,7 @@
 {
  "v": 1,
- "build": 5,
- "sha256": "17916bed30192ec116cbd0f75095fbc93fcc15f60b93e7d674a602852f117388",
- "sig": "XHtkGTOR63DygW7OxccwqJxUrAA3vkwUn3dD972B+42dfBZIEXFgswR8SB9PcESJNoHylbC2U7RPiQO5bKkkAQ==",
+ "build": 6,
+ "sha256": "4b50419a1f8080bd3e858ab13b77365b67180142eb068eda8620b7ba73f35a63",
+ "sig": "ZWljuApo3z1tI1l4CgJE0mx7xpGthg+IFN0N/LCW6OTDsTgOTxk9gwGhlX3WQMUVQ5fHDX/Ggl6KdSgPlgnSCg==",
  "minShell": 2
 }
