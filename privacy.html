@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShaiFi Privacy Policy</title>
+<style>
+:root{--ink:#1d2622;--muted:#55605b;--bg:#f6f7f5;--rule:#dce2de;--accent:#0E6B5C}
+@media (prefers-color-scheme:dark){:root{--ink:#e7ece9;--muted:#a3ada8;--bg:#121816;--rule:#2a3530;--accent:#5fc2ad}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:40px 20px 64px}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:19px;margin:32px 0 6px;border-top:1px solid var(--rule);padding-top:20px}
+p,li{color:var(--ink)}.muted{color:var(--muted)}a{color:var(--accent)}
+</style></head><body><main>
+<h1>ShaiFi Privacy Policy</h1>
+<p class="muted">Effective October 18, 2026</p>
+<p>ShaiFi is a private personal-finance app built for and used by its owner, Shai Borenstein. It is not offered to the public. This policy explains what the app does with data, including data it reads from Google accounts.</p>
+
+<h2>Where data lives</h2>
+<p>All financial data ShaiFi handles is stored only on the owner's own Android phone, encrypted with AES-256. The encryption key is kept in the Android Keystore and unlocked with the owner's fingerprint or passphrase. ShaiFi has no server and no database of its own. No data is sold, shared, or sent to the app's developer or to any third party.</p>
+
+<h2>Google user data</h2>
+<p>ShaiFi requests two read-only Google permissions, each only after the owner chooses to connect it:</p>
+<ul>
+<li><b>Google Drive (read-only):</b> used solely to find and download one file, <code>shaifi-sync.json</code>, which the owner's own computer writes to their Drive. The file is encrypted before it leaves the computer and is decrypted only on the phone.</li>
+<li><b>Gmail (read-only):</b> used solely to search for card transaction alert emails from the owner's card issuers (currently Capital One and Discover) and to read the amount, merchant, and date from those emails. No other email is opened or stored.</li>
+</ul>
+<p>Data obtained through these permissions is used only to show the owner their own transactions inside the app. It is stored only in the encrypted vault on the phone. It is not transferred to anyone, not used for advertising, not used to train AI or machine-learning models, and not read by humans other than the owner.</p>
+<p>ShaiFi's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+<h2>Notifications on the phone</h2>
+<p>If the owner enables it, ShaiFi reads notifications only from bank and card apps the owner selects, keeps only those that contain a charge amount, and stores them encrypted on the phone. Notifications from other apps are discarded without being read or stored.</p>
+
+<h2>Removing access and deleting data</h2>
+<p>The owner can revoke ShaiFi's Google access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>, turn off notification access in Android settings, and delete all ShaiFi data from within the app or by uninstalling it.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy: bendixhld@gmail.com</p>
+</main></body></html>
