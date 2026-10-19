@@ -1,0 +1,41 @@
+name: Sign update
+
+# Signs a new web build of ShaiFi. The update key exists only as the OTA_SIGNING_KEY secret of this repository.
+# This job runs no third-party code apart from actions/checkout (pinned) and the runner's own tools.
+on:
+  push:
+    branches: [main]
+    paths: ['request.json']
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  sign:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Sign and publish latest.json
+        env:
+          OTA_KEY: ${{ secrets.OTA_SIGNING_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$OTA_KEY" || { echo "::error::The OTA_SIGNING_KEY secret is missing"; exit 1; }
+          umask 077
+          printf '%s\n' "$OTA_KEY" > "$RUNNER_TEMP/k.pem"
+          build=$(jq -er '.build|tostring|test("^[0-9]+$") and true' request.json >/dev/null && jq -r .build request.json)
+          min=$(jq -r .minShell request.json)
+          echo "$min" | grep -Eq '^[0-9]+$'
+          f="web/${build}.html"; test -f "$f"
+          sha=$(sha256sum "$f" | cut -d' ' -f1)
+          printf 'shaifi-web2|%s|%s|%s' "$build" "$sha" "$min" > "$RUNNER_TEMP/msg"
+          sig=$(openssl pkeyutl -sign -inkey "$RUNNER_TEMP/k.pem" -rawin -in "$RUNNER_TEMP/msg" | base64 -w0)
+          rm -f "$RUNNER_TEMP/k.pem"
+          jq -n --argjson b "$build" --arg s "$sha" --argjson m "$min" --arg g "$sig" '{v:2,build:$b,sha256:$s,minShell:$m,sig:$g}' > latest.json
+          git config user.name "ShaiFi signer"
+          git config user.email "noreply@borenshai"
+          git add latest.json
+          git commit -m "Sign web build $build"
+          git push
