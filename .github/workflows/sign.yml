@@ -1,6 +1,7 @@
 name: Sign update
 
-# Signs a new web build of ShaiFi. The update key exists only as the OTA_SIGNING_KEY secret of this repository.
+# Signs a new web build of ShaiFi. The update key exists only as the OTA_SIGNING_KEY secret of the ota-sign environment,
+# which requires Shai's approval for every run, so a push alone can never produce a signed update.
 # This job runs no third-party code apart from actions/checkout (pinned) and the runner's own tools.
 on:
   push:
@@ -14,6 +15,8 @@ permissions:
 jobs:
   sign:
     runs-on: ubuntu-latest
+    # The key is a secret of the "ota-sign" environment, which waits for Shai's approval in GitHub before every run.
+    environment: ota-sign
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
